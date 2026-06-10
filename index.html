@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Licencias Marketing · Portones</title>
+  <style>
+    :root {
+      --bg:#f6f8fc;
+      --card:#ffffff;
+      --text:#101936;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --primary:#1f7ae0;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      padding:26px;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter, Arial, sans-serif;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      margin-bottom:20px;
+    }
+
+    h1 { margin:0; font-size:34px; }
+
+    .subtitle {
+      color:var(--muted);
+      margin-top:6px;
+      font-size:16px;
+    }
+
+    .status {
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px 20px;
+      box-shadow:0 6px 20px rgba(0,0,0,.04);
+      font-weight:900;
+    }
+
+    .toolbar {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    button,
+    a.button {
+      border:0;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:900;
+      cursor:pointer;
+      color:#fff;
+      background:var(--primary);
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    button.secondary { background:#111827; }
+
+    .layout {
+      display:grid;
+      grid-template-columns:350px 1fr;
+      gap:20px;
+      align-items:start;
+    }
+
+    .card {
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:20px;
+      box-shadow:0 8px 24px rgba(16,25,54,.06);
+    }
+
+    .panel { padding:22px; }
+
+    h2 {
+      margin:0 0 18px;
+      font-size:20px;
+    }
+
+    .numbers {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      text-align:center;
+      margin-bottom:18px;
+    }
+
+    .numbers div {
+      background:#f8fafc;
+      border-radius:14px;
+      padding:14px 8px;
+    }
+
+    .numbers strong {
+      display:block;
+      font-size:28px;
+    }
+
+    .numbers span {
+      font-size:10px;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:900;
+    }
+
+    .team-member {
+      border-top:1px solid var(--line);
+      padding:14px 0;
+    }
+
+    .team-member:last-child { padding-bottom:0; }
+
+    .person-title {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-weight:900;
+      margin-bottom:8px;
+    }
+
+    .left-title {
+      display:flex;
+      align-items:center;
+      gap:9px;
+    }
+
+    .dot {
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      display:inline-block;
+      flex:0 0 auto;
+    }
+
+    .balance {
+      background:#f3f4f6;
+      border-radius:99px;
+      padding:5px 9px;
+      font-size:12px;
+      color:#374151;
+      white-space:nowrap;
+    }
+
+    .mini-list {
+      margin:8px 0 0;
+      padding-left:18px;
+      color:#374151;
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    .calendar-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(300px,1fr));
+      gap:18px;
+    }
+
+    .month { padding:22px; }
+
+    .month h2 {
+      text-align:center;
+      margin:0 0 20px;
+      font-size:22px;
+    }
+
+    .weekdays,
+    .days {
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:8px;
+    }
+
+    .weekdays div {
+      color:var(--muted);
+      font-weight:900;
+      font-size:12px;
+      text-align:center;
+    }
+
+    .day {
+      min-height:38px;
+      border-radius:11px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      position:relative;
+    }
+
+    .day.weekend { color:#ff2b4f; }
+    .day.muted { color:#b8bdc8; }
+    .day.leave { color:#fff; }
+
+    .legend {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 18px;
+      padding:18px 2px 0;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .note {
+      margin-top:18px;
+      padding:16px 18px;
+      border:1px solid #cfe3ff;
+      background:#f4f9ff;
+      border-radius:16px;
+      color:#1d5fbf;
+      font-weight:800;
+    }
+
+    .small {
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    @media print {
+      body { padding:10px; background:white; }
+      .card { box-shadow:none; }
+      .toolbar,.status { display:none; }
+      .layout { grid-template-columns:330px 1fr; }
+    }
+
+    @media(max-width:1250px) {
+      .layout { grid-template-columns:1fr; }
+      .calendar-grid { grid-template-columns:1fr; }
+      header { flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div>
+      <h1>Licencias Marketing</h1>
+      <div class="subtitle">Conectado a Google Sheets · vista de junio a diciembre 2026</div>
+    </div>
+    <div class="status" id="status">Cargando planilla…</div>
+  </header>
+
+  <div class="toolbar">
+    <a class="button" target="_blank" href="https://docs.google.com/spreadsheets/d/1DWhKcW4aR4KToPxJtVA-QYBrfiq_32QczHjfSUs1YpY/edit">Editar Google Sheet</a>
+    <button onclick="loadData()">Actualizar datos</button>
+    <button class="secondary" onclick="window.print()">Imprimir / guardar PDF</button>
+  </div>
+
+  <main class="layout">
+    <aside>
+      <section class="card panel">
+        <h2>Resumen por integrante</h2>
+        <div class="numbers">
+          <div><strong id="totalGenerated">0</strong><span>Disponibles</span></div>
+          <div><strong id="totalUsed">0</strong><span>Programados</span></div>
+          <div><strong id="totalPending">0</strong><span>Pendientes</span></div>
+        </div>
+        <div id="teamSummary"></div>
+        <p class="small">Vacaciones: se toman los días cargados en la columna “Días”. La licencia paternal se muestra, pero no descuenta días de licencia anual.</p>
+      </section>
+    </aside>
+
+    <section>
+      <div class="calendar-grid" id="calendars"></div>
+      <div class="note" id="mainNote"></div>
+    </section>
+  </main>
+
+<script>
+const SHEET_ID = "1DWhKcW4aR4KToPxJtVA-QYBrfiq_32QczHjfSUs1YpY";
+const BASE_URL = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json;responseHandler:";
+
+let people = {};
+let absences = [];
+
+const fallbackPeople = {
+  "Stephi": { total: 13, scheduled: 6, pending: 7 },
+  "Roxi": { total: 13, scheduled: 8, pending: 5 },
+  "Carlos": { total: 11, scheduled: 11, pending: 0 },
+  "Alejandro": { total: 14, scheduled: 11, pending: 3 },
+  "Sofi": { total: 18, scheduled: 0, pending: 18 },
+  "Virginia": { total: 10, scheduled: 10, pending: 0 }
+};
+
+const fallbackAbsences = [
+  {person:"Stephi", type:"Vacaciones", from:"2026-09-01", to:"2026-09-08", days:6, comment:"Restan 7 días sin fecha"},
+  {person:"Roxi", type:"Vacaciones", from:"2026-08-13", to:"2026-08-14", days:2, comment:""},
+  {person:"Roxi", type:"Vacaciones", from:"2026-07-13", to:"2026-07-17", days:5, comment:""},
+  {person:"Roxi", type:"Vacaciones", from:"2026-09-21", to:"2026-09-21", days:1, comment:"Restan 5 días sin fecha"},
+  {person:"Carlos", type:"Vacaciones", from:"2026-07-27", to:"2026-07-31", days:5, comment:""},
+  {person:"Carlos", type:"Vacaciones", from:"2026-10-05", to:"2026-10-09", days:6, comment:"Sin días pendientes"},
+  {person:"Alejandro", type:"Vacaciones", from:"2026-07-03", to:"2026-07-03", days:1, comment:""},
+  {person:"Alejandro", type:"Licencia paterna", from:"2026-09-01", to:"2026-09-20", days:20, comment:"Fecha estimada: primera semana de setiembre"}
+];
+
+const months = [
+  {name:"Junio 2026", year:2026, month:5},
+  {name:"Julio 2026", year:2026, month:6},
+  {name:"Agosto 2026", year:2026, month:7},
+  {name:"Setiembre 2026", year:2026, month:8},
+  {name:"Octubre 2026", year:2026, month:9},
+  {name:"Noviembre 2026", year:2026, month:10},
+  {name:"Diciembre 2026", year:2026, month:11},
+];
+
+// Paleta amplia. Si agregás más personas, la web genera colores nuevos automáticamente.
+// No se repiten dentro de la misma carga.
+const COLOR_PALETTE = [
+  "#8b5cf6", "#ff416c", "#1f7ae0", "#80c41c", "#f59e0b", "#14b8a6",
+  "#ec4899", "#6366f1", "#ef4444", "#10b981", "#06b6d4", "#a855f7",
+  "#f97316", "#84cc16", "#0ea5e9", "#eab308", "#d946ef", "#22c55e",
+  "#3b82f6", "#f43f5e", "#7c3aed", "#0891b2", "#65a30d", "#c026d3"
+];
+
+function generatedColor(index) {
+  if (index < COLOR_PALETTE.length) return COLOR_PALETTE[index];
+
+  const hue = Math.round((index * 137.508) % 360);
+  return `hsl(${hue}, 78%, 46%)`;
+}
+
+function assignColors(names) {
+  const sortedNames = [...names];
+  sortedNames.forEach((name, index) => {
+    if (!people[name]) people[name] = {};
+    people[name].color = generatedColor(index);
+  });
+}
+
+function overlapBackground(colors){
+  const unique = [...new Set(colors)].filter(Boolean);
+  if(unique.length === 0) return "";
+  if(unique.length === 1) return unique[0];
+
+  const step = 100 / unique.length;
+  const parts = [];
+  unique.forEach((color, i) => {
+    const start = Math.round(i * step);
+    const end = Math.round((i + 1) * step);
+    parts.push(`${color} ${start}% ${end}%`);
+  });
+  return `linear-gradient(135deg, ${parts.join(", ")})`;
+}
+
+function loadSheet(sheetName){
+  return new Promise((resolve, reject) => {
+    const callback = "sheetCallback_" + sheetName + "_" + Date.now();
+
+    window[callback] = function(data){
+      try {
+        const cols = data.table.cols.map(c => (c.label || c.id || "").trim());
+        const rows = data.table.rows.map(r => {
+          const obj = {};
+          cols.forEach((col, i) => obj[col] = r.c[i]?.f || r.c[i]?.v || "");
+          return obj;
+        });
+
+        delete window[callback];
+        script.remove();
+        resolve(rows);
+      } catch(err) {
+        reject(err);
+      }
+    };
+
+    const script = document.createElement("script");
+    script.src = BASE_URL + callback + "&sheet=" + encodeURIComponent(sheetName);
+    script.onerror = () => reject(new Error("No se pudo cargar " + sheetName));
+    document.body.appendChild(script);
+  });
+}
+
+function normalizeDate(value){
+  if(!value) return "";
+  let s = String(value).trim();
+
+  if(/^Date\(/.test(s)){
+    const match = s.match(/Date\((\d+),(\d+),(\d+)\)/);
+    if(match){
+      const y = Number(match[1]);
+      const m = Number(match[2]);
+      const d = Number(match[3]);
+      return iso(new Date(y,m,d));
+    }
+  }
+
+  if(/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+
+  if(/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(s)){
+    const [d,m,y] = s.split("/");
+    return `${y}-${m.padStart(2,"0")}-${d.padStart(2,"0")}`;
+  }
+
+  if(s.toLowerCase().includes("definir")) return "";
+  return s;
+}
+
+async function loadData(){
+  document.getElementById("status").textContent = "Cargando planilla…";
+
+  try {
+    const integrantes = await loadSheet("Integrantes");
+    const licencias = await loadSheet("Licencias");
+
+    people = {};
+
+    integrantes.forEach(r => {
+      const name = r["Integrante"];
+      if(!name) return;
+
+      people[name] = {
+        total: Number(r["Días disponibles"] || 0),
+        scheduled: Number(r["Días programados"] || 0),
+        pending: Number(r["Días pendientes"] || 0)
+      };
+    });
+
+    absences = licencias.map(r => ({
+      person: r["Integrante"],
+      from: normalizeDate(r["Desde"]),
+      to: normalizeDate(r["Hasta"]),
+      type: r["Tipo"] || "Vacaciones",
+      days: Number(String(r["Días"] || "0").replace(/[^0-9.]/g,"")) || 0,
+      comment: r["Comentario"] || ""
+    })).filter(a => a.person && a.from && a.to);
+
+    if(Object.keys(people).length === 0) people = {...fallbackPeople};
+    if(absences.length === 0) absences = [...fallbackAbsences];
+
+    // Suma al listado cualquier persona que esté en Licencias pero no en Integrantes.
+    absences.forEach(a => {
+      if(!people[a.person]) {
+        people[a.person] = { total: 0, scheduled: 0, pending: 0 };
+      }
+    });
+
+    assignColors(Object.keys(people));
+
+    document.getElementById("status").textContent = "Datos actualizados desde Google Sheets";
+  } catch(e) {
+    console.error(e);
+
+    people = {...fallbackPeople};
+    absences = [...fallbackAbsences];
+
+    assignColors(Object.keys(people));
+
+    document.getElementById("status").textContent = "No pude leer la Sheet. Mostrando datos base.";
+  }
+
+  renderAll();
+}
+
+function iso(date){
+  const y = date.getFullYear();
+  const m = String(date.getMonth()+1).padStart(2,"0");
+  const d = String(date.getDate()).padStart(2,"0");
+  return `${y}-${m}-${d}`;
+}
+
+function parseDate(s){
+  const [y,m,d] = s.split("-").map(Number);
+  return new Date(y, m-1, d);
+}
+
+function dateLabel(s){
+  const d = parseDate(s);
+  const meses = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
+  return `${d.getDate()} ${meses[d.getMonth()]}`;
+}
+
+function absencesForDate(date){
+  const s = iso(date);
+  return absences.filter(a => s >= a.from && s <= a.to);
+}
+
+function renderSummary(){
+  const root = document.getElementById("teamSummary");
+  root.innerHTML = "";
+
+  let generated = 0;
+  let used = 0;
+  let pending = 0;
+
+  Object.entries(people).forEach(([name, cfg]) => {
+    generated += Number(cfg.total || 0);
+    used += Number(cfg.scheduled || 0);
+    pending += Number(cfg.pending || 0);
+
+    const personAbs = absences
+      .filter(a => a.person === name)
+      .sort((a,b) => a.from.localeCompare(b.from));
+
+    const div = document.createElement("div");
+    div.className = "team-member";
+    div.innerHTML = `
+      <div class="person-title">
+        <span class="left-title">
+          <span class="dot" style="background:${cfg.color}"></span>${name}
+        </span>
+        <span class="balance">${cfg.pending || 0} días restantes</span>
+      </div>
+      <ul class="mini-list">
+        ${personAbs.map(a => `<li>${a.type}: ${dateLabel(a.from)}${a.to !== a.from ? " → " + dateLabel(a.to) : ""} · ${a.days} ${String(a.type).toLowerCase().includes("paterna") ? "corridos" : "días"}${a.comment ? " · " + a.comment : ""}</li>`).join("")}
+      </ul>`;
+
+    root.appendChild(div);
+  });
+
+  document.getElementById("totalGenerated").textContent = generated;
+  document.getElementById("totalUsed").textContent = used;
+  document.getElementById("totalPending").textContent = pending;
+
+  document.getElementById("mainNote").textContent =
+    "Días pendientes: " + Object.entries(people)
+      .map(([name,cfg]) => `${name} ${cfg.pending || 0} días`)
+      .join(" · ");
+}
+
+function renderMonth(m){
+  const wrap = document.createElement("div");
+  wrap.className = "card month";
+  wrap.innerHTML = `<h2>${m.name}</h2>
+    <div class="weekdays">
+      <div>LUN</div><div>MAR</div><div>MIÉ</div><div>JUE</div><div>VIE</div><div>SÁB</div><div>DOM</div>
+    </div>
+    <div class="days"></div>
+    <div class="legend"></div>`;
+
+  const daysEl = wrap.querySelector(".days");
+  const legendEl = wrap.querySelector(".legend");
+
+  const first = new Date(m.year, m.month, 1);
+  const last = new Date(m.year, m.month + 1, 0);
+  const startOffset = (first.getDay()+6)%7;
+  const prevLast = new Date(m.year, m.month, 0).getDate();
+
+  for(let i=startOffset-1; i>=0; i--){
+    const el = document.createElement("div");
+    el.className = "day muted";
+    el.textContent = prevLast - i;
+    daysEl.appendChild(el);
+  }
+
+  const monthPeople = new Map();
+
+  for(let d=1; d<=last.getDate(); d++){
+    const date = new Date(m.year, m.month, d);
+    const el = document.createElement("div");
+    el.className = "day";
+
+    if([0,6].includes(date.getDay())) el.classList.add("weekend");
+
+    const dayAbs = absencesForDate(date);
+
+    if(dayAbs.length === 1){
+      const person = dayAbs[0].person;
+      const cfg = people[person] || { color:"#64748b" };
+
+      el.classList.add("leave");
+      el.style.background = cfg.color;
+
+      monthPeople.set(person, cfg.color);
+      el.title = `${person} · ${dayAbs[0].type}`;
+    } else if(dayAbs.length > 1){
+      const colors = dayAbs.map(a => (people[a.person] || {color:"#64748b"}).color);
+
+      el.classList.add("leave");
+      el.style.background = overlapBackground(colors);
+
+      dayAbs.forEach(a => monthPeople.set(a.person, (people[a.person] || {color:"#64748b"}).color));
+      el.title = dayAbs.map(a => `${a.person} · ${a.type}`).join(" / ");
+    }
+
+    el.textContent = d;
+    daysEl.appendChild(el);
+  }
+
+  while(daysEl.children.length % 7 !== 0){
+    const el = document.createElement("div");
+    el.className = "day muted";
+    el.textContent = (daysEl.children.length % 7) + 1;
+    daysEl.appendChild(el);
+  }
+
+  monthPeople.forEach((color, person) => {
+    const item = document.createElement("span");
+    item.innerHTML = `<span class="dot" style="background:${color}"></span> ${person}`;
+    legendEl.appendChild(item);
+  });
+
+  return wrap;
+}
+
+function renderCalendars(){
+  const root = document.getElementById("calendars");
+  root.innerHTML = "";
+  months.forEach(m => root.appendChild(renderMonth(m)));
+}
+
+function renderAll(){
+  renderSummary();
+  renderCalendars();
+}
+
+loadData();
+</script>
+</body>
+</html>
